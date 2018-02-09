@@ -4,7 +4,7 @@ export class Coffee {
         public name: string,
         public roaster: Roaster,
         public originCountry: string,
-        public originFarm: string,
+        public about: string,
         public imageURL: string,
         public websiteURL: string
     ) {}
