@@ -9,8 +9,6 @@ router.get('/', (req, res) => {
 });
 
 router.get('/coffees', (req, res) => {
-    console.log('/coffees');
-
     db.all('SELECT * FROM Coffees', 
         (err, rows) => {
             if (err) {
@@ -21,26 +19,21 @@ router.get('/coffees', (req, res) => {
             }
         }
     )
-
-    // db.all("SELECT * FROM Coffees;", 
-    //     (err, rows) => {
-    //         if (err) {
-    //             console.log(err)
-    //             res.send("error msg from api")
-    //         } else {
-    //             rows.forEach((row) => {
-    //                 console.log(row)
-    //                 res.send(row)
-    //             })
-                
-    //         }
-    // })
-    // res.send({ data: 'Getting all coffees' });
 });
 
 router.get('/coffees/:coffeeId', (req, res) => {
-    const coffeeId = req.params['coffeeId']
-    res.send('Getting coffee: ' + coffeeId);
+    const coffeeId = req.params.coffeeId.substr(1);
+    // console.log(coffeeId);
+    db.get('SELECT * FROM Coffees WHERE coffeeId = ?', coffeeId, 
+        (err, row) => {
+            if (err) {
+                console.error(err);
+            } else {
+                // console.log(row);
+                res.send(row);
+            }
+        }
+    )
 });
 
 router.get('/roasters', (req, res) => {

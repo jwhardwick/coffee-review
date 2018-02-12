@@ -1,3 +1,4 @@
+import { Params } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -9,12 +10,16 @@ const httpOptions = {
 @Injectable()
 export class ApiService {
 
-    apiURL = 'http://localhost:3000';
+    apiURL = 'http://localhost:3000/api';
 
     constructor(private http: HttpClient) {}
 
     // Uses http.get() to load data from a single API endpoint
     getCoffees() {
-        return this.http.get(this.apiURL + '/api/coffees');
+        return this.http.get(this.apiURL + '/coffees');
+    }
+
+    getCoffeeDetail(params: Params) {
+        return this.http.get(this.apiURL + '/coffees/' + params.coffeeId);
     }
 }

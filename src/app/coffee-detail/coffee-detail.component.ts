@@ -1,3 +1,4 @@
+import { ApiService } from './../api.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -9,12 +10,26 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class CoffeeDetailComponent implements OnInit {
 
   params: Params;
+  coffee;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private _apiService: ApiService) {
     this.route.params.subscribe( params => this.params = params );
   }
 
   ngOnInit() {
+    this.getCoffeeDetail();
+  }
+
+  update() {
+    this.getCoffeeDetail();
+  }
+
+  getCoffeeDetail() {
+    this._apiService.getCoffeeDetail(this.params).subscribe(
+      data => { this.coffee = data; },
+      err => console.error(err),
+      () => console.log(this.coffee)
+    );
   }
 
 }
