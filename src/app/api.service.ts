@@ -16,7 +16,15 @@ export class ApiService {
 
     // Uses http.get() to load data from a single API endpoint
     getCoffees() {
-        return this.http.get(this.apiURL + '/coffees');
+        return this.http.get<[{
+            coffeeId: number,
+            roasterId: number,
+            coffeeName: string,
+            origin: string,
+            imageURL: string,
+            websiteURL: string,
+            details: string
+        }]>(this.apiURL + '/coffees');
     }
 
     getCoffeeDetail(params: Params) {

@@ -1,11 +1,11 @@
-import { Roaster } from './roaster.model';
-export class Coffee {
+export class CoffeeModel {
     constructor(
-        public name: string,
-        public roaster: Roaster,
-        public originCountry: string,
-        public about: string,
+        public coffeeId: number,
+        public roasterId: number,
+        public coffeeName: string,
+        public origin: string,
         public imageURL: string,
-        public websiteURL: string
+        public websiteURL: string,
+        public details: string
     ) {}
 }

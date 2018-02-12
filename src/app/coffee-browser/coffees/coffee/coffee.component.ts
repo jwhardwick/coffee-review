@@ -1,4 +1,4 @@
-import { Coffee } from './../../../shared/coffee.model';
+import { CoffeeModel } from './../../../shared/coffee.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CoffeeComponent implements OnInit {
 
-  @Input() coffee: Coffee;
+  @Input() coffee: CoffeeModel;
 
   constructor() { }
 
