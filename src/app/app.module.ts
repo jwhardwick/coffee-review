@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -16,11 +18,10 @@ import { RoasterDetailComponent } from './roaster-detail/roaster-detail.componen
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { AccountNavComponent } from './header/account-nav/account-nav.component';
-
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MyCoffeesComponent } from './my-coffees/my-coffees.component';
+import { ApiService } from './api.service';
 
 const appRoutes: Routes = [
   { path: 'coffee-browser', component: CoffeeBrowserComponent },
@@ -56,13 +57,14 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AngularFontAwesomeModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // Debugging
     )
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

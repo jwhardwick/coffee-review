@@ -1,13 +1,13 @@
 
 
 
-<a routerLink="/coffee-detail/:{{ coffee.name }}" routerLinkActive="active">
+<a routerLink="/coffee-detail/:{{ coffee.coffeeId }}" routerLinkActive="active">
   <div class="card col-md-12" style="width: 18rem;">
       <img class="card-img-top" src="{{ coffee.imageURL }}" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">{{ coffee.name }}</h5>
-        <a href="{{ coffee.roaster.websiteURL }}">
-            <h6 class="card-title">{{ coffee.roaster.name }}</h6>
+        <h5 class="card-title">{{ coffee.coffeeName }}</h5>
+        <a href="{{ coffee.websiteURL }}">
+            <h6 class="card-title">{{ coffee.roasterId }}</h6>
         </a>
         
         
