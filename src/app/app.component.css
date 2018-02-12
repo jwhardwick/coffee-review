@@ -1,0 +1,4 @@
+/* Prevents Scrollbar shifting layout */
+body { 
+    margin-left: calc(100vw - 100%); 
+}
