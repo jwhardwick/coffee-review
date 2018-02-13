@@ -16,6 +16,7 @@ export class AuthService {
     scope: AUTH_CONFIG.SCOPE
   });
   userProfile: any;
+  isAdmin: boolean;
   // Logged in status
   loggedIn: boolean;
   loggedIn$ = new BehaviorSubject<boolean>(this.loggedIn);
@@ -29,6 +30,7 @@ export class AuthService {
 
     if (this.tokenValid) {
       this.userProfile = JSON.parse(lsProfile);
+      this.isAdmin = localStorage.getItem('isAdmin') === 'true';
       this.setLoggedIn(true);
     } else if (!this.tokenValid && lsProfile) {
       this.logout();
@@ -74,6 +76,8 @@ export class AuthService {
     // Save session data and update login status subject
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + Date.now());
     // Set tokens and expiration in localStorage and props
+    this.isAdmin = this._checkAdmin(profile);
+    localStorage.setItem('isAdmin', this.isAdmin.toString());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
@@ -83,8 +87,14 @@ export class AuthService {
     this.setLoggedIn(true);
   }
 
+  private _checkAdmin(profile) {
+    const roles = profile[AUTH_CONFIG.NAMESPACE] || [];
+    return roles.indexOf('admin') > -1;
+  }
+
   logout() {
     // Ensure all auth items removed from localStorage
+    localStorage.removeItem('isAdmin');
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
@@ -92,6 +102,7 @@ export class AuthService {
     localStorage.removeItem('authRedirect');
     // Reset local properties, update loggedIn$ stream
     this.userProfile = undefined;
+    this.isAdmin = undefined;
     this.setLoggedIn(false);
     // Return to homepage
     this.router.navigate(['/']);

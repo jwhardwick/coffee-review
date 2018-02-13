@@ -6,6 +6,7 @@ interface AuthConfig {
     AUDIENCE: string;
     REDIRECT: string;
     SCOPE: string;
+    NAMESPACE: string;
 }
 
 export const AUTH_CONFIG: AuthConfig = {
@@ -13,5 +14,6 @@ export const AUTH_CONFIG: AuthConfig = {
     CLIENT_DOMAIN: 'jwhardwick.au.auth0.com',
     AUDIENCE: 'https://jwhardwick.au.auth0.com/userinfo',
     REDIRECT: `${ENV.BASE_URI}/callback`,
-    SCOPE: 'openid profile'
+    SCOPE: 'openid profile',
+    NAMESPACE: `${ENV.BASE_URI}/roles`
 };

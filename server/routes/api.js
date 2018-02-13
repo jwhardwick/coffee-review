@@ -1,7 +1,38 @@
 const express = require('express');
 const router = express.Router();
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('database.db');
+const jwt = require('express-jwt');
+const fs = require('file-system');
+
+// DB
+const db = new sqlite3.Database('database.db', sqlite3.OPEN_READWRITE, (err) => {
+    if (err) {
+        console.error('Database does not exist');
+        const newDb = new sqlite3.Database('database.db', (error) => {
+            if (error) {
+                console.error(error);
+            }
+        });
+        const sql = require('./schema');
+        newDb.exec(sql);
+        return newDb;
+    }
+});
+
+// Auth
+module.exports = (app, config) => {
+    const jwtCheck = jwt({});
+
+    const adminCheck = (req, res, next) => {
+        const roles = req.user[config.NAMESPACE] || [];
+        if (roles.indexOf('admin') > -1) {
+            next();
+        } else {
+            res.status(401).send({message: 'Not authorized for admin access'});
+        }
+    }
+}
+
 
 /* GET api listing. */
 router.get('/', (req, res) => {
