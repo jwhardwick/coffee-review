@@ -18,13 +18,12 @@ export class CoffeesComponent implements OnInit, OnDestroy {
 
   constructor(private _apiService: ApiService,
               private _route: ActivatedRoute) {
-                console.log('activated route');
-                this._route.params.subscribe( () => this.getCoffees());
+                // this._route.params.subscribe( () => this.getCoffees());
               }
 
 
   ngOnInit() {
-    // this.getCoffees();
+    this.getCoffees();
   }
 
   getCoffees() {
