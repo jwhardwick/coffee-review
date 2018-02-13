@@ -1,3 +1,4 @@
+import { AuthService } from './auth/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -22,6 +23,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MyCoffeesComponent } from './my-coffees/my-coffees.component';
 import { ApiService } from './api.service';
+import { CallbackComponent } from './pages/callback/callback.component';
 
 const appRoutes: Routes = [
   { path: 'coffee-browser', component: CoffeeBrowserComponent },
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'my-coffees/:userId', component: MyCoffeesComponent },
-  { path: '', component: HomeComponent }
+  { path: '', component: HomeComponent },
+  { path: 'callback', component: CallbackComponent }
 ];
 
 @NgModule({
@@ -53,7 +56,8 @@ const appRoutes: Routes = [
     AccountNavComponent,
     LoginComponent,
     RegisterComponent,
-    MyCoffeesComponent
+    MyCoffeesComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,12 @@ const appRoutes: Routes = [
       { enableTracing: false } // Debugging
     )
   ],
-  providers: [ApiService],
-  bootstrap: [AppComponent]
+  providers: [
+    ApiService,
+    AuthService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
