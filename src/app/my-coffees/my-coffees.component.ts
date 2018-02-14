@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-my-coffees',
   templateUrl: './my-coffees.component.html',
-  styleUrls: ['./my-coffees.component.css']
+  styleUrls: ['./my-coffees.component.scss']
 })
 export class MyCoffeesComponent implements OnInit {
 

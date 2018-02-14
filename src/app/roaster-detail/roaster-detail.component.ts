@@ -4,7 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-roaster-detail',
   templateUrl: './roaster-detail.component.html',
-  styleUrls: ['./roaster-detail.component.css']
+  styleUrls: ['./roaster-detail.component.scss']
 })
 export class RoasterDetailComponent implements OnInit {
 

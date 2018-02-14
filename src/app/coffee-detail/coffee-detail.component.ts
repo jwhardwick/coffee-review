@@ -5,7 +5,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-coffee-detail',
   templateUrl: './coffee-detail.component.html',
-  styleUrls: ['./coffee-detail.component.css']
+  styleUrls: ['./coffee-detail.component.scss']
 })
 export class CoffeeDetailComponent implements OnInit {
 

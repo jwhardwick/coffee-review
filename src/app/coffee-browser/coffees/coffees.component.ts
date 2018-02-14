@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'app-coffees',
   templateUrl: './coffees.component.html',
-  styleUrls: ['./coffees.component.css']
+  styleUrls: ['./coffees.component.scss']
 })
 export class CoffeesComponent implements OnInit, OnDestroy {
 

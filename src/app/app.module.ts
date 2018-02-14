@@ -24,6 +24,7 @@ import { RegisterComponent } from './register/register.component';
 import { MyCoffeesComponent } from './my-coffees/my-coffees.component';
 import { ApiService } from './api.service';
 import { CallbackComponent } from './pages/callback/callback.component';
+import { TestscssComponent } from './testscss/testscss.component';
 
 const appRoutes: Routes = [
   { path: 'coffee-browser', component: CoffeeBrowserComponent },
@@ -57,7 +58,8 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     MyCoffeesComponent,
-    CallbackComponent
+    CallbackComponent,
+    TestscssComponent
   ],
   imports: [
     BrowserModule,
