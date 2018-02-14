@@ -76,4 +76,9 @@ router.get('/roasters/:roasterId', (req, res) => {
     res.send('Getting roaster: ' + roasterId);
 });
 
+// Add a new coffee
+router.post('/coffees/', (req, res) => {
+    
+})
+
 module.exports = router;
