@@ -51,6 +51,11 @@ export class AuthService {
   handleAuth() {
     // When Auth0 hash parsed, get profile
     this._auth0.parseHash((err, authResult) => {
+      // if (authResult) {
+      //   console.log(authResult);
+      //   console.log(authResult.accessToken);
+      //   console.log(authResult.idToken);
+      // }
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this._getProfile(authResult);

@@ -1,10 +1,12 @@
-export class Roaster {
+export class RoasterModel {
     constructor(
-        public name: string,
+        public roasterId: number,
+        public roasterName: string,
         public country: string,
-        public state: string,
+        public region: string,
         public city: string,
         public imageURL: string,
-        public websiteURL: string 
+        public websiteURL: string,
+        public details: string
     ) {}
 }

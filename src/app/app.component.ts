@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'app';
 
   constructor(private auth: AuthService) {
+    console.log('app.component ngOnInit');
     auth.handleAuth();
   }
 }

@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from './../../api.service';
 import { Http } from '@angular/http';
-import { Roaster } from './../../shared/roaster.model';
+import { RoasterModel } from './../../shared/roaster.model';
 import { CoffeeModel } from './../../shared/coffee.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';

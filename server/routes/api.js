@@ -3,7 +3,8 @@ const router = express.Router();
 const sqlite3 = require('sqlite3').verbose();
 const jwt = require('express-jwt');
 const fs = require('file-system');
-
+const jwks = require('jwks-rsa');
+const config = require('../config');
 // DB
 const db = new sqlite3.Database('database.db', sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
@@ -20,18 +21,29 @@ const db = new sqlite3.Database('database.db', sqlite3.OPEN_READWRITE, (err) => 
 });
 
 // Auth
-module.exports = (app, config) => {
-    const jwtCheck = jwt({});
 
-    const adminCheck = (req, res, next) => {
-        const roles = req.user[config.NAMESPACE] || [];
-        if (roles.indexOf('admin') > -1) {
-            next();
-        } else {
-            res.status(401).send({message: 'Not authorized for admin access'});
-        }
+const jwtCheck = jwt({
+    secret: jwks.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: `https://${config.AUTH0_DOMAIN}/.well-known/jwks.json`
+    }),
+    aud: config.AUTH0_API_AUDIENCE,
+    issuer: `https://${config.AUTH0_DOMAIN}/`,
+    algorithm: 'RS256'
+  });
+
+const adminCheck = (req, res, next) => {
+    // console.log(req.user);
+    const roles = req.user[config.NAMESPACE] || [];
+    if (roles.indexOf('admin') > -1) {
+        next();
+    } else {
+        res.status(401).send({message: 'Not authorized for admin access'});
     }
 }
+
 
 
 /* GET api listing. */
@@ -71,6 +83,21 @@ router.get('/roasters', (req, res) => {
     res.send('Getting all roasters');
 });
 
+router.get('/roasters/admin', jwtCheck, adminCheck, (req, res) => {
+    // res.send('Getting all admin roasters');
+    db.all('SELECT * FROM Roasters', 
+        (err, rows) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send({messsage: err.message});
+            } else {
+                // console.log(rows);
+                res.send(rows);
+            }
+        }
+    )
+});
+
 router.get('/roasters/:roasterId', (req, res) => {
     const roasterId = req.params['roasterId']
     res.send('Getting roaster: ' + roasterId);
@@ -78,7 +105,7 @@ router.get('/roasters/:roasterId', (req, res) => {
 
 // Add a new coffee
 router.post('/coffees/', (req, res) => {
-    
+
 })
 
 module.exports = router;
