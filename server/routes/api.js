@@ -104,8 +104,39 @@ router.get('/roasters/:roasterId', (req, res) => {
 });
 
 // Add a new coffee
-router.post('/coffees/', (req, res) => {
+router.post('/coffees/new', jwtCheck, (req, res) => {
+    
 
+    const coffeeName = req.body.coffeeName;
+    const roasterId = req.body.roasterId;
+    const details = req.body.details;
+    const origin = req.body.origin;
+    const imageURL = req.body.imageURL;
+    const websiteURL = req.body.websiteURL;
+
+    db.get(`
+        SELECT * FROM Coffees
+        WHERE coffeeName = ?
+        AND roasterId = ?
+        AND origin = ?
+    `, [coffeeName, roasterId, origin], (err, existingCoffee) => {
+        if (err) {
+            return res.status(500).send({messsage: err.message});
+        }
+        else if (existingCoffee) {
+            console.log('coffee alaready exists');
+            return res.status(409).send({message: 'Coffee already exists'});
+        }
+        else {
+            db.run(`
+                INSERT INTO Coffees(coffeeId, roasterId, coffeeName, origin, imageURL, websiteURL, details)
+                VALUES(NULL, ?, ?, ?, ?, ?, ?)
+            `, [roasterId, coffeeName, origin, imageURL, websiteURL, details])
+            res.send({message: 'coffee added'});
+        }
+    })
+    
+    
 })
 
 module.exports = router;

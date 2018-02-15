@@ -1,0 +1,39 @@
+<form>
+  <div class="form-group row">
+    <label for="example-text-input" class="col-2 col-form-label">Name</label>
+    <div class="col-10">
+      <input #coffeeNameInput class="form-control" id="coffee-name" value="El Arcangel" type="text">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-search-input" class="col-2 col-form-label">Roaster ID</label>
+    <div class="col-10">
+      <input #roasterIdInput class="form-control" id="roaster-id" value="1" type="number">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-email-input" class="col-2 col-form-label">Origin</label>
+    <div class="col-10">
+      <input #originInput class="form-control" id="origin" value="Bolivia" type="text">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-email-input" class="col-2 col-form-label">Details</label>
+    <div class="col-10">
+      <input #detailsInput class="form-control" id="details" value="Notes of butterscotch, mandarin and lemon myrtle." type="text">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-url-input" class="col-2 col-form-label">ImageURL</label>
+    <div class="col-10">
+      <input #imageURLInput class="form-control" id="image-url" value="https://shop.meccacoffee.com.au/system/App/File/Image/images/000/000/358/medium/El%20Arcangel%20250g.jpg" type="url">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-tel-input" class="col-2 col-form-label">WebsiteURL</label>
+    <div class="col-10">
+      <input #websiteURLInput class="form-control" id="website-url" value="https://shop.meccacoffee.com.au/category/coffee/el-arcangel-250g" type="url">
+    </div>
+  </div>
+  <button (click)="addCoffee()" class="btn btn-primary">Submit</button>
+</form>

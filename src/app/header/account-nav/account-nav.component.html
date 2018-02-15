@@ -12,6 +12,9 @@
             <li *ngIf="auth.loggedIn">
                <a class="nav-link" href="#" (click)="auth.logout()">Logout</a>
             </li>
+            <li *ngIf="auth.loggedIn">
+              <a class="nav-link" routerLink="/add-coffee" routerLinkActive="active">Add Coffee</a>
+            </li>
             <a  (click)="handleClick()">Info</a>
           </ul>
     </div>

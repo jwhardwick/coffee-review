@@ -1,9 +1,11 @@
+import { CoffeeModel } from './shared/coffee.model';
 import { RoasterModel } from './shared/roaster.model';
 import { AuthService } from './auth/auth.service';
 import { Params } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -52,6 +54,13 @@ export class ApiService {
             websiteURL: string,
             details: string
         }]>(this.apiURL + `/roasters/admin`, {
+                headers: new HttpHeaders().set('Authorization', this._authHeader)
+            });
+    }
+
+    postCoffee(coffee: CoffeeModel) {
+        return this.http
+            .post(this.apiURL + `/coffees/new`, coffee, {
                 headers: new HttpHeaders().set('Authorization', this._authHeader)
             });
     }

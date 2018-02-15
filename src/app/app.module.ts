@@ -24,6 +24,7 @@ import { RegisterComponent } from './register/register.component';
 import { MyCoffeesComponent } from './my-coffees/my-coffees.component';
 import { ApiService } from './api.service';
 import { CallbackComponent } from './pages/callback/callback.component';
+import { AddCoffeeComponent } from './add-coffee/add-coffee.component';
 
 
 const appRoutes: Routes = [
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'my-coffees/:userId', component: MyCoffeesComponent },
   { path: '', component: HomeComponent },
-  { path: 'callback', component: CallbackComponent }
+  { path: 'callback', component: CallbackComponent },
+  { path: 'add-coffee', component: AddCoffeeComponent }
 ];
 
 @NgModule({
@@ -58,7 +60,8 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     MyCoffeesComponent,
-    CallbackComponent
+    CallbackComponent,
+    AddCoffeeComponent
   ],
   imports: [
     BrowserModule,
